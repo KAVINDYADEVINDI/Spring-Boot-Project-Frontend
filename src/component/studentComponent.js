@@ -1,7 +1,9 @@
 import React from "react";
-import studentService from "../services/studentService";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
+import { Button, ButtonGroup } from "react-bootstrap";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class StudentComponent extends React.Component {
   constructor(props) {
@@ -11,22 +13,18 @@ export default class StudentComponent extends React.Component {
     };
   }
 
-  componentDidMount(){
-      axios.get("http://localhost:8080/api/students").then((response) => {
-        // this.setState({students:response.data})
-        console.log(response.data);
-      });
+  componentDidMount() {
+    axios.get("http://localhost:8080/api/students").then((response) => {
+      this.setState({ students: response.data });
+      console.log(response.data);
+    });
   }
-  // componentDidMount() {
-  //   const students = studentService.getStudents();
-  //   console.log(students);
-    
-  // }
 
   render() {
     return (
       <div>
         <h1 className="text-center"> Student Management System</h1>
+
         <table className="table table-striped">
           <thead>
             <tr>
@@ -34,7 +32,6 @@ export default class StudentComponent extends React.Component {
               <td>Student Name</td>
               <td>Course</td>
               <td>Course fee(Rs.)</td>
-              <td>Action</td>
               <td>Action</td>
             </tr>
           </thead>
@@ -45,6 +42,17 @@ export default class StudentComponent extends React.Component {
                 <td>{student.name}</td>
                 <td>{student.course}</td>
                 <td>{student.fee}</td>
+
+                <td>
+                  <ButtonGroup>
+                    <Button size="sm" variant="outline-primary">
+                      <FontAwesomeIcon icon={faEdit} />
+                    </Button>
+                    <Button size="sm" variant="outline-danger">
+                      <FontAwesomeIcon icon={faTrash} />
+                    </Button>
+                  </ButtonGroup>
+                </td>
               </tr>
             ))}
           </tbody>
