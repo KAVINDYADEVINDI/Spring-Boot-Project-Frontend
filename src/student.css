@@ -15,3 +15,9 @@
     font-weight: 600;
     
 }
+.cut{
+  color: rgb(102, 31, 31);
+}
+.cut:hover{
+  cursor: pointer;
+}

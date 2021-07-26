@@ -108,7 +108,7 @@ export default class StudentComponent extends React.Component {
             <Modal.Title id="example-custom-modal-styling-title">
               Question 1
             </Modal.Title>
-            <AiOutlineClose onClick={() => this.cutModal()} />
+            <AiOutlineClose className="cut" onClick={() => this.cutModal()} />
           </Modal.Header>
           <Modal.Body>
             <InputGroup className="mb-3">
