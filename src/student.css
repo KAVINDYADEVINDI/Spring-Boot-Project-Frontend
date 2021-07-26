@@ -1,0 +1,17 @@
+.nav {
+  background-color: #8bafc9;
+}
+.add {
+  float: right;
+}
+.container {
+  justify-content: center;
+  align-items: center;
+}
+.tabl {
+  margin-top: 20px;
+}
+.head{
+    font-weight: 600;
+    
+}
