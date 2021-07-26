@@ -1,8 +1,10 @@
 import React from 'react';
 import studentService from '../services/studentService';
+import "bootstrap/dist/css/bootstrap.css";
 
 class studentComponent extends React.Component{
-    constructor(){
+    constructor(props){
+        super(props)
         this.state={
             students:[]
         }
