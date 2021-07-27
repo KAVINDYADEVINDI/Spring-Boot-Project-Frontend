@@ -29,7 +29,7 @@ export default class EditStudent extends React.Component {
     //send user route.js with id
     await axios
       .get("http://localhost:8080/api/student/" + this.props.match.params.id)
-      // console.log(user);
+      // console.log(this.props.match.params.id)
       .then((response) => {
         this.setState({
           //set data in the response
