@@ -114,6 +114,7 @@ export default class EditStudent extends React.Component {
         </Modal.Header>
         <Form id="FormId">
           <Modal.Body>
+            <h6>Student ID</h6>
             <InputGroup className="mb-3">
               <Form.Control
                 required
@@ -125,6 +126,7 @@ export default class EditStudent extends React.Component {
                 onChange={this.onChangeId}
               />
             </InputGroup>
+            <h6>Student Full Name</h6>
             <InputGroup className="mb-3">
               <Form.Control
                 required
@@ -136,6 +138,7 @@ export default class EditStudent extends React.Component {
                 onChange={this.onChangeName}
               />
             </InputGroup>
+            <h6>Course</h6>
             <InputGroup className="mb-3">
               <Form.Control
                 required
@@ -147,6 +150,7 @@ export default class EditStudent extends React.Component {
                 onChange={this.onChangeCourse}
               />
             </InputGroup>
+            <h6>Course fee</h6>
             <InputGroup className="mb-3">
               <Form.Control
                 required
@@ -166,7 +170,7 @@ export default class EditStudent extends React.Component {
               variant="outline-primary"
               color="primary"
             >
-              ADD
+              UPDATE
             </Button>
           </Modal.Footer>
         </Form>

@@ -107,7 +107,8 @@ export default class CreateComponent extends React.Component {
           </Modal.Header>
           <Form id="FormId">
             <Modal.Body>
-              <InputGroup className="mb-3" >
+              <h6>Student ID</h6>
+              <InputGroup className="mb-3">
                 <Form.Control
                   required
                   className="input-color-popup"
@@ -118,6 +119,7 @@ export default class CreateComponent extends React.Component {
                   onChange={this.onChangeId}
                 />
               </InputGroup>
+              <h6>Student Full Name</h6>
               <InputGroup className="mb-3">
                 <Form.Control
                   required
@@ -129,6 +131,7 @@ export default class CreateComponent extends React.Component {
                   onChange={this.onChangeName}
                 />
               </InputGroup>
+              <h6>Course</h6>
               <InputGroup className="mb-3">
                 <Form.Control
                   required
@@ -140,6 +143,7 @@ export default class CreateComponent extends React.Component {
                   onChange={this.onChangeCourse}
                 />
               </InputGroup>
+              <h6>Course fee</h6>
               <InputGroup className="mb-3">
                 <Form.Control
                   required
@@ -158,7 +162,6 @@ export default class CreateComponent extends React.Component {
                 onClick={this.onSubmit}
                 variant="outline-primary"
                 color="primary"
-                
               >
                 ADD
               </Button>
