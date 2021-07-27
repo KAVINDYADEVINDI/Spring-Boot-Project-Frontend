@@ -46,6 +46,7 @@ export default class CreateComponent extends React.Component {
       fee: e.target.value,
     });
   }
+  //when clicking add button 
   onSubmit(e) {
     e.preventDefault();
     console.log(
