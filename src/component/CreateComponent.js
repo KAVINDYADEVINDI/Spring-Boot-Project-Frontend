@@ -67,6 +67,9 @@ export default class CreateComponent extends React.Component {
       course: "",
       fee: "",
     });
+    this.setState({ show: false });
+     window.location.reload(false);
+   
   }
   //modal popup
   handleModal() {

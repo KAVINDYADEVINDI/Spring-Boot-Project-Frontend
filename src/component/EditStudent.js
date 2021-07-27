@@ -86,6 +86,8 @@ export default class EditStudent extends React.Component {
       course: "",
       fee: "",
     });
+    this.setState({ show: false });
+    window.location.href='/';
   }
 
   handleModal() {
@@ -93,6 +95,7 @@ export default class EditStudent extends React.Component {
   }
   cutModal() {
     this.setState({ show: false });
+    
   }
 
   render() {
