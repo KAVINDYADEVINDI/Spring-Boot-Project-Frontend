@@ -25,12 +25,7 @@ export default class CreateComponent extends React.Component {
     this.onChangeFee = this.onChangeFee.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  async componentDidMount() {
-    await axios.get("http://localhost:8080/api/students").then((response) => {
-      this.setState({ students: response.data });
-      console.log(response.data);
-    });
-  }
+
   onChangeId(e) {
     this.setState({
       id: e.target.value,

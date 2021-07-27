@@ -6,7 +6,7 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import CreateComponent from './CreateComponent'
+import CreateComponent from "./CreateComponent";
 
 export default class StudentComponent extends React.Component {
   constructor(props) {
@@ -14,15 +14,14 @@ export default class StudentComponent extends React.Component {
     this.state = {
       students: [],
     };
-   
   }
+  //get all student details
   async componentDidMount() {
     await axios.get("http://localhost:8080/api/students").then((response) => {
       this.setState({ students: response.data });
       console.log(response.data);
     });
   }
- 
 
   //when click delete button
   onDelete = (id) => {
@@ -30,10 +29,7 @@ export default class StudentComponent extends React.Component {
     axios.delete("http://localhost:8080/api/students/delete/" + id);
   };
 
- 
-
   render() {
-    
     return (
       <div>
         <h1 className="text-center "> Student Management System</h1>
