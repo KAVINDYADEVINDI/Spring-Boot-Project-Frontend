@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 import "../student.css";
-import { Button, Modal, InputGroup, Form } from "react-bootstrap";
+import { Button, Modal, InputGroup, Form ,Alert} from "react-bootstrap";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 import { AiOutlineClose } from "react-icons/ai";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -67,8 +67,10 @@ export default class CreateComponent extends React.Component {
       course: "",
       fee: "",
     });
+
     this.setState({ show: false });
      window.location.reload(false);
+
    
   }
   //modal popup

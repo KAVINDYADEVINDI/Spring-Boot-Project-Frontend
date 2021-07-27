@@ -32,7 +32,7 @@ export default class DeleteAlert extends React.Component {
     return (
       <div className="container">
         <Button size="sm" variant="outline-danger" onClick={this.submit}>
-          Confirm Delete
+          Please Click me for Confirm Delete
         </Button>
       </div>
     );
