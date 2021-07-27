@@ -105,7 +105,7 @@ export default class CreateComponent extends React.Component {
           </Modal.Header>
           <Form id="FormId">
             <Modal.Body>
-              <InputGroup className="mb-3">
+              <InputGroup className="mb-3" >
                 <Form.Control
                   required
                   className="input-color-popup"
@@ -156,6 +156,7 @@ export default class CreateComponent extends React.Component {
                 onClick={this.onSubmit}
                 variant="outline-primary"
                 color="primary"
+                
               >
                 ADD
               </Button>

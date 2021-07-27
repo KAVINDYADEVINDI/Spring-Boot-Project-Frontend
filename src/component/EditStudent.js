@@ -95,7 +95,7 @@ export default class EditStudent extends React.Component {
   }
   cutModal() {
     this.setState({ show: false });
-    
+    window.location.href = "/";
   }
 
   render() {
