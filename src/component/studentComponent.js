@@ -2,24 +2,11 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 import "../student.css";
-import {
-  Button,
-  ButtonGroup,
-  Navbar,
-  Container,
-  Modal,
-  InputGroup,
-  Form,
-} from "react-bootstrap";
-import {
-  faEdit,
-  faTrash,
-  faUser,
-  faSave,
-} from "@fortawesome/free-solid-svg-icons";
+import { Button, ButtonGroup, Modal, InputGroup, Form } from "react-bootstrap";
+import { faTrash, faSave,faEdit } from "@fortawesome/free-solid-svg-icons";
 import { AiOutlineClose } from "react-icons/ai";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { Link } from "react-router-dom";
 
 export default class StudentComponent extends React.Component {
   constructor(props) {
@@ -103,67 +90,57 @@ export default class StudentComponent extends React.Component {
     const { show } = this.state;
     return (
       <div>
-        <Navbar bg="dark" variant="dark">
-          <Container>
-            <Navbar.Brand href="/">
-              <FontAwesomeIcon icon={faUser} />
-              React Bootstrap
-            </Navbar.Brand>
-          </Container>
-        </Navbar>
-        <div className="container">
-          <h1 className="text-center "> Student Management System</h1>
+        <h1 className="text-center "> Student Management System</h1>
 
-          <table className="table table-striped tabl">
-            <thead className="thead-dark head">
-              <tr>
-                <td>Student ID</td>
-                <td>Student Name</td>
-                <td>Course</td>
-                <td>Course fee(Rs.)</td>
-                <td>Action</td>
+        <table className="table table-striped tabl">
+          <thead className="thead-dark head">
+            <tr>
+              <td>Student ID</td>
+              <td>Student Name</td>
+              <td>Course</td>
+              <td>Course fee(Rs.)</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.students.map((student) => (
+              <tr key={student.id}>
+                <td>{student.id}</td>
+                <td>{student.name}</td>
+                <td>{student.course}</td>
+                <td>{student.fee}</td>
+
+                <td>
+                  <ButtonGroup>
+                    <Link
+                      to={"student/edit/" + student.id}
+                      className="btn btn-primary"
+                    >
+                      <FontAwesomeIcon icon={faEdit} />
+                    </Link>
+
+                    <Button
+                      onClick={() => this.onDelete(student.id)}
+                      size="sm"
+                      variant="outline-danger"
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </Button>
+                  </ButtonGroup>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {this.state.students.map((student) => (
-                <tr key={student.id}>
-                  <td>{student.id}</td>
-                  <td>{student.name}</td>
-                  <td>{student.course}</td>
-                  <td>{student.fee}</td>
+            ))}
+          </tbody>
+        </table>
+        <Button
+          onClick={() => this.handleModal()}
+          size="sm"
+          variant="outline-primary"
+          className="add"
+        >
+          <FontAwesomeIcon icon={faSave} /> Add Student
+        </Button>
 
-                  <td>
-                    <ButtonGroup>
-                      <Button
-                        size="sm"
-                        onClick={() => this.onEdit(student.id)}
-                        variant="outline-primary"
-                      >
-                        <FontAwesomeIcon icon={faEdit} />
-                      </Button>
-                      <Button
-                        onClick={() => this.onDelete(student.id)}
-                        size="sm"
-                        variant="outline-danger"
-                      >
-                        <FontAwesomeIcon icon={faTrash} />
-                      </Button>
-                    </ButtonGroup>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <Button
-            onClick={() => this.handleModal()}
-            size="sm"
-            variant="outline-primary"
-            className="add"
-          >
-            <FontAwesomeIcon icon={faSave} /> Add Student
-          </Button>
-        </div>
-        //modal
         <Modal
           show={show}
           dialogClassName="modal-90w"
