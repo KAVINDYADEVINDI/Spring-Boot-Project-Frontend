@@ -20,27 +20,83 @@ import {
 import { AiOutlineClose } from "react-icons/ai";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
 export default class StudentComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       students: [],
       show: false,
+      id: "",
+      name: "",
+      course: "",
+      fee: "",
     };
+    this.onChangeId = this.onChangeId.bind(this);
+    this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeCourse = this.onChangeCourse.bind(this);
+    this.onChangeFee = this.onChangeFee.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
+  async componentDidMount() {
+    await axios.get("http://localhost:8080/api/students").then((response) => {
+      this.setState({ students: response.data });
+      console.log(response.data);
+    });
+  }
+  onChangeId(e) {
+    this.setState({
+      id: e.target.value,
+    });
+  }
+  onChangeName(e) {
+    this.setState({
+      name: e.target.value,
+    });
+  }
+  onChangeCourse(e) {
+    this.setState({
+      course: e.target.value,
+    });
+  }
+  onChangeFee(e) {
+    this.setState({
+      fee: e.target.value,
+    });
+  }
+  onSubmit(e) {
+    e.preventDefault();
+    console.log(
+      `the values are ${this.state.id},${this.state.name},${this.state.course}`
+    );
+    const obj = {
+      id: this.state.id,
+      name: this.state.name,
+      course: this.state.course,
+      fee: this.state.fee,
+    };
+
+    axios.post("http://localhost:8080/api/students/add", obj);
+
+    this.setState({
+      id: "",
+      name: "",
+      course: "",
+      fee: "",
+    });
+  }
+
+  //when click delete button
+  onDelete = (id) => {
+    //send url to user_route.js
+    axios.delete("http://localhost:8080/api/students/delete/" + id);
+  };
 
   handleModal() {
     this.setState({ show: true });
   }
   cutModal() {
     this.setState({ show: false });
-  }
-
-  componentDidMount() {
-    axios.get("http://localhost:8080/api/students").then((response) => {
-      this.setState({ students: response.data });
-      console.log(response.data);
-    });
   }
 
   render() {
@@ -78,10 +134,18 @@ export default class StudentComponent extends React.Component {
 
                   <td>
                     <ButtonGroup>
-                      <Button size="sm" variant="outline-primary">
+                      <Button
+                        size="sm"
+                        onClick={() => this.onEdit(student.id)}
+                        variant="outline-primary"
+                      >
                         <FontAwesomeIcon icon={faEdit} />
                       </Button>
-                      <Button size="sm" variant="outline-danger">
+                      <Button
+                        onClick={() => this.onDelete(student.id)}
+                        size="sm"
+                        variant="outline-danger"
+                      >
                         <FontAwesomeIcon icon={faTrash} />
                       </Button>
                     </ButtonGroup>
@@ -99,6 +163,7 @@ export default class StudentComponent extends React.Component {
             <FontAwesomeIcon icon={faSave} /> Add Student
           </Button>
         </div>
+        //modal
         <Modal
           show={show}
           dialogClassName="modal-90w"
@@ -106,34 +171,68 @@ export default class StudentComponent extends React.Component {
         >
           <Modal.Header>
             <Modal.Title id="example-custom-modal-styling-title">
-              Question 1
+              ADD STUDENT
             </Modal.Title>
             <AiOutlineClose className="cut" onClick={() => this.cutModal()} />
           </Modal.Header>
-          <Modal.Body>
-            <InputGroup className="mb-3">
-              <Form.Control
-                className="p-4 input-color-popup"
-                type="text"
-                name="Quiz Header"
-                placeholder="Write the Question 1"
-                id="Quiz Header"
-              />
-            </InputGroup>
-            <h4 className="text-popup mb-3 text-lg-left text-md-left">
-              Select Correct Answer
-            </h4>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="contained"
-              color="primary"
-              size="medium"
-              className="background-primary"
-            >
-              ADD
-            </Button>
-          </Modal.Footer>
+          <Form id="FormId">
+            <Modal.Body>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  required
+                  className="input-color-popup"
+                  type="text"
+                  name="id"
+                  placeholder="Student Id"
+                  value={this.state.id}
+                  onChange={this.onChangeId}
+                />
+              </InputGroup>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  required
+                  className="input-color-popup"
+                  type="text"
+                  name="name"
+                  placeholder="Student Name"
+                  value={this.state.name}
+                  onChange={this.onChangeName}
+                />
+              </InputGroup>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  required
+                  className="input-color-popup"
+                  type="text"
+                  name="course"
+                  placeholder="Course"
+                  value={this.state.course}
+                  onChange={this.onChangeCourse}
+                />
+              </InputGroup>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  required
+                  className="input-color-popup"
+                  type="text"
+                  name="fee"
+                  placeholder="Course fee (Rs.)"
+                  value={this.state.fee}
+                  onChange={this.onChangeFee}
+                />
+              </InputGroup>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                size="sm"
+                onClick={this.onSubmit}
+                variant="outline-primary"
+                color="primary"
+              >
+                ADD
+              </Button>
+            </Modal.Footer>
+          </Form>
         </Modal>
       </div>
     );
