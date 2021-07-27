@@ -4,9 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import StudentComponent from "./component/StudentComponent";
 import { Navbar, Container } from "react-bootstrap";
-import { Switch, Route } from "react-router-dom";
-import EditStudent from './component/EditStudent';
-
+import { BrowseRouter as Router, Switch, Route, Link } from "react-router-dom";
+import EditStudent from "./component/EditStudent";
 
 class App extends Component {
   render() {
@@ -15,8 +14,8 @@ class App extends Component {
         <Navbar bg="dark" variant="dark">
           <Container>
             <Navbar.Brand href="/" className="ml-1">
-              <FontAwesomeIcon icon={faUser} className="mr-5" />
-                " " Students AZ Campus " "
+              <FontAwesomeIcon icon={faUser} className="mr-5" />" " Students AZ
+              Campus " "
             </Navbar.Brand>
           </Container>
         </Navbar>
@@ -24,7 +23,7 @@ class App extends Component {
           <StudentComponent />
         </div>
         <Switch>
-          <Route exact path="student/edit/:id" component={EditStudent}></Route>
+          <Route exact path="/edit/:id" component={EditStudent}></Route>
         </Switch>
       </div>
     );

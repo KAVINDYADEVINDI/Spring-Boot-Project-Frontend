@@ -55,7 +55,7 @@ export default class StudentComponent extends React.Component {
                 <td>
                   <ButtonGroup>
                     <Link
-                      to={"student/edit/" + student.id}
+                      to={"/edit/" + student.id}
                       className="btn btn-primary"
                     >
                       <FontAwesomeIcon icon={faEdit} />

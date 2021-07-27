@@ -11,7 +11,7 @@ export default class EditStudent extends React.Component {
     super(props);
     this.state = {
       students: [],
-      show: false,
+      show: true,
       id: "",
       name: "",
       course: "",
