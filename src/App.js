@@ -6,6 +6,7 @@ import StudentComponent from "./component/StudentComponent";
 import { Navbar, Container } from "react-bootstrap";
 import { BrowseRouter as Router, Switch, Route, Link } from "react-router-dom";
 import EditStudent from "./component/EditStudent";
+import DeleteAlert from "./component/DeleteAlert";
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
         </div>
         <Switch>
           <Route exact path="/edit/:id" component={EditStudent}></Route>
+          <Route exact path="/delete/:id" component={DeleteAlert}></Route>
         </Switch>
       </div>
     );

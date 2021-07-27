@@ -60,14 +60,14 @@ export default class StudentComponent extends React.Component {
                     >
                       <FontAwesomeIcon icon={faEdit} />
                     </Link>
-
-                    <Button
-                      onClick={() => this.onDelete(student.id)}
-                      size="sm"
-                      variant="outline-danger"
+                    <Link
+                      to={"/delete/" + student.id}
+                      className="btn btn-danger"
                     >
                       <FontAwesomeIcon icon={faTrash} />
-                    </Button>
+                    </Link>
+
+                   
                   </ButtonGroup>
                 </td>
               </tr>
